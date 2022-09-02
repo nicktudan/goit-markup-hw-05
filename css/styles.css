@@ -29,6 +29,8 @@
 Колір рамки клієнтів #AFB1B8;
 Фон іконок футера rgba(255, 255, 255, 0.1);
 Накладений колір фону rgba(47, 48, 58, 0.4);
+Накладений фон картки Чим займаємося rgba(47, 48, 58, 0.8);
+Накладений фон картки Портфодіо  rgba(33, 150, 243, 0.9);
 Прехід 250ms cubic-bezier(0.4, 0, 0.2, 1);
 Основний шрифт тексту Roboto, sans-serif;
 Шрифт логотипу Raleway, sans-serif; */
@@ -65,6 +67,8 @@
     --client-border: #AFB1B8;
     --icon-bg-footer: rgba(255, 255, 255, 0.1);
     --overlay-color: rgba(47, 48, 58, 0.4);
+    --overlay-card-work: rgba(47, 48, 58, 0.8);
+    --overlay-card-portfolio: rgba(33, 150, 243, 0.9);
     --transition-dur-tf: 250ms cubic-bezier(0.4, 0, 0.2, 1);
     --pimary-font-text: Roboto, sans-serif;
     --font-logo: Raleway, sans-serif;
@@ -154,6 +158,24 @@ header {border-bottom: 1px solid var(--header-border-color);}
     transition: color var(--transition-dur-tf);
 }
 
+.site-nav-item {
+    position: relative;
+}
+
+.link.current::after {
+    display: block;
+    position: absolute;
+    content: "";
+    width: 100%;
+    height: 4px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 30px;
+
+    background: var(--accent-color);
+    border-radius: 2px;
+}
+
 .contacts {
     display: flex;
     align-items: baseline;
@@ -196,7 +218,8 @@ header {border-bottom: 1px solid var(--header-border-color);}
 }
 
 .logo,
-.service-btn, 
+.service-btn,
+.work-text, 
 .footer-text {
     font-weight: 700;
 }
@@ -212,6 +235,7 @@ header {border-bottom: 1px solid var(--header-border-color);}
 .site-nav .link,
 .contacts .link,
 .feature-title,
+.work-text,
 .footer-text {
     font-size: 14px;
     line-height: 1.14;
@@ -414,6 +438,24 @@ header {border-bottom: 1px solid var(--header-border-color);}
 
 .work-item {flex-basis: calc((100% - 60px) / 3);}
 
+.work-card {
+    position: relative;
+}
+
+.work-text {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    margin: 0;
+    padding-top: 27px;
+    padding-bottom: 27px;
+    background-color: var(--overlay-card-work);
+
+    text-align: center;
+    text-transform: uppercase;
+}
+
 .work {padding-top: 0px;}
 
 /* Оформлення Постійні клієнти */
@@ -505,6 +547,7 @@ header {border-bottom: 1px solid var(--header-border-color);}
     margin-left: 70px;
 } 
 
+.work-text,
 .footer-text {
     color: var(--primary-light-text-color);
     text-transform: uppercase;
@@ -609,7 +652,42 @@ header {border-bottom: 1px solid var(--header-border-color);}
 
 .portfolio-title {
     margin-bottom: 4px;
-    font-size: 18px;
     line-height: 2;
     color: var(--pimary-text-color); 
+}
+
+.portfolio-title,
+.portfolio-overlay {
+    font-size: 18px;
+}
+
+.portfolio-card-thumb {
+    position: relative;
+    overflow: hidden; 
+}
+
+.portfolio-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    background: var(--overlay-card-portfolio);
+    color: var(--primary-light-text-color);
+
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1.56;
+    text-align: center; 
+    padding: 63px 24px; 
+
+    overflow: auto;
+    transform: translateY(100%);
+    transition: transform var(--transition-dur-tf);
+}
+
+.portfolio-link:hover .portfolio-overlay,
+.portfolio-link:focus .portfolio-overlay {
+    transform: translateY(0%);
 }
